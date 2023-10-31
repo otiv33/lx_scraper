@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  postgres-db:
+    build: 
+      context: /
+      dockerfile: Dockerfile_db
+    ports:
+      - "5432:5432"
+
+  flask-app:
+    build: 
+      context: /
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"

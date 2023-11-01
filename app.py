@@ -1,11 +1,12 @@
-from flask import Flask, jsonify, render_template
-from web_scraper import WebScraper
-from db import Db
+from flask import Flask, render_template
+from DB.db import Db
+from web_scraper.web_scraper_runner import WebScraperRunner
 
 app = Flask(__name__)
 
+# Initial scrape data and fill DB
 with app.app_context():
-    results = WebScraper().run_spider()
+    results = WebScraperRunner().run_spider()
     db = Db()
     db.fill_data(results)
     

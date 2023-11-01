@@ -3,12 +3,12 @@ import scrapy
 from scrapy.http import Response
 from playwright.sync_api import sync_playwright
 
-class Scraper(scrapy.Spider):
-    name = 'LxScraper'
+class SrealitySpider(scrapy.Spider):
+    name = 'SrealitySpider'
     url = 'https://www.sreality.cz'
     initial_url = url + '/en/search/for-sale/apartments'
     counter = 0
-    max_number_of_items = 200
+    max_number_of_items = 500
     
     def start_requests(self):
         yield self.make_request(self.initial_url)
@@ -17,14 +17,6 @@ class Scraper(scrapy.Spider):
         with sync_playwright() as p:
             browser = p.chromium.launch()
             page = browser.new_page()
-            # context = browser.new_context(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36')
-            # context.add_cookies([
-            #     {
-            #         "name": "per_page",
-            #         "value": "60",
-            #         "url": self.url
-            #     }
-            # ])
             page.goto(response.url)
 
             page.wait_for_load_state("load")

@@ -1,10 +1,10 @@
 from scrapy import signals
-from scrapy.crawler import CrawlerProcess, CrawlerRunner
+from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from scrapy.signalmanager import dispatcher
 
-from LxScraper.LxScraper.spiders.scraper import Scraper
-class WebScraper():
+from web_scraper.web_scraper.spiders.sreality import SrealitySpider
+class WebScraperRunner():
    
     def run_spider(self):
         results = []
@@ -15,7 +15,7 @@ class WebScraper():
         dispatcher.connect(crawler_results, signal=signals.item_scraped)
 
         process = CrawlerProcess(get_project_settings())
-        process.crawl(Scraper)
+        process.crawl(SrealitySpider)
         
         process.start()
         return results

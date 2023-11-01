@@ -3,8 +3,8 @@ version: '3'
 services:
   postgres-db:
     build: 
-      context: /
-      dockerfile: Dockerfile_db
+      context: /DB
+      dockerfile: Dockerfile
     ports:
       - "5432:5432"
 
